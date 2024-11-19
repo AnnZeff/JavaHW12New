@@ -53,6 +53,26 @@ class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+    @Test
+    public void shouldNotCurrentChannelBeAboveMax(){
+        Radio chan = new Radio();
+        chan.setCurrentChannel(10);
+
+        int expected = 0;
+        int actual = chan.getCurrentChannel();
+
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void shouldNotCurrentChannelBeLowMin(){
+        Radio chan = new Radio();
+        chan.setCurrentChannel(-1);
+
+        int expected = 0;
+        int actual = chan.getCurrentChannel();
+
+        Assertions.assertEquals(expected, actual);
+    }
 
     @Test
     public void testMinVolume() {
@@ -71,6 +91,27 @@ class RadioTest {
         vol.setMaxVolume();
 
         int expected = 100;
+        int actual = vol.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldNotCurrentVolumeBeAboveMax(){
+        Radio vol = new Radio();
+        vol.setCurrentVolume(101);
+
+        int expected = 0;
+        int actual = vol.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void shouldNotCurrentVolumeBeLowMin(){
+        Radio vol = new Radio();
+        vol.setCurrentVolume(-1);
+
+        int expected = 0;
         int actual = vol.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);

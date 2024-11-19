@@ -31,23 +31,27 @@ public class Radio {
     }
 
     public void setCurrentChannel(int newCurrentChannel) {
-        if (newCurrentChannel > 9) {
-            return;
-        }
         if (newCurrentChannel < 0) {
             return;
         }
+
+        if (newCurrentChannel > 9) {
+            return;
+        }
+
         currentChannel = newCurrentChannel;
 
     }
 
     public void setCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume > 100) {
-            return;
-        }
         if (newCurrentVolume < 0) {
             return;
         }
+
+        if (newCurrentVolume > 100) {
+            return;
+        }
+
         currentVolume = newCurrentVolume;
     }
 
@@ -62,10 +66,10 @@ public class Radio {
     }
 
     public void prevChannel() {
-        if (currentChannel >= 0) {
+        if (currentChannel > 0) {
             currentChannel = currentChannel - 1;
         }
-        if (currentChannel < 0) {
+        if (currentChannel <= 0) {
             setMaxChannel();
         }
     }
@@ -73,7 +77,7 @@ public class Radio {
     public void increaseVolume() {
         currentVolume = currentVolume + 1;
 
-        if (currentVolume > 100) {
+        if (currentVolume >= 100) {
             setMaxVolume();
         }
 
