@@ -53,8 +53,9 @@ class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
-    public void shouldNotCurrentChannelBeAboveMax(){
+    public void shouldNotCurrentChannelBeAboveMax() {
         Radio chan = new Radio();
         chan.setCurrentChannel(10);
 
@@ -63,8 +64,9 @@ class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
-    public void shouldNotCurrentChannelBeLowMin(){
+    public void shouldNotCurrentChannelBeLowMin() {
         Radio chan = new Radio();
         chan.setCurrentChannel(-1);
 
@@ -97,7 +99,7 @@ class RadioTest {
     }
 
     @Test
-    public void shouldNotCurrentVolumeBeAboveMax(){
+    public void shouldNotCurrentVolumeBeAboveMax() {
         Radio vol = new Radio();
         vol.setCurrentVolume(101);
 
@@ -106,8 +108,9 @@ class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
-    public void shouldNotCurrentVolumeBeLowMin(){
+    public void shouldNotCurrentVolumeBeLowMin() {
         Radio vol = new Radio();
         vol.setCurrentVolume(-1);
 
@@ -117,18 +120,47 @@ class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
+
     @Test
-    public void testNextChannel() {
+    public void testFromMinChannelToNext() {
         Radio chan = new Radio();
-        chan.setCurrentChannel(5);
+        chan.setCurrentChannel(0);
 
         chan.nextChannel();
 
-        int expected = 6;
+        int expected = 1;
         int actual = chan.getCurrentChannel();
 
         Assertions.assertEquals(expected, actual);
     }
+
+    @Test
+    public void testNextChannel() {
+        Radio chan = new Radio();
+        chan.setCurrentChannel(3);
+
+        chan.nextChannel();
+
+        int expected = 4;
+        int actual = chan.getCurrentChannel();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testFromPenultChannelToMax() {
+        Radio chan = new Radio();
+        chan.setCurrentChannel(8);
+
+        chan.nextChannel();
+
+        int expected = 9;
+        int actual = chan.getCurrentChannel();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+
     @Test
     public void shouldNotNextChannelAboveMax() {
         Radio chan = new Radio();
@@ -144,10 +176,36 @@ class RadioTest {
     @Test
     public void testPrevChannel() {
         Radio chan = new Radio();
-        chan.setCurrentChannel(3);
+        chan.setCurrentChannel(5);
         chan.prevChannel();
 
-        int expected = 2;
+        int expected = 4;
+        int actual = chan.getCurrentChannel();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testFromMaxChannelToPrev() {
+        Radio chan = new Radio();
+        chan.setCurrentChannel(9);
+
+        chan.prevChannel();
+
+        int expected = 8;
+        int actual = chan.getCurrentChannel();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testFromSecondChannelToMin() {
+        Radio chan = new Radio();
+        chan.setCurrentChannel(1);
+
+        chan.prevChannel();
+
+        int expected = 0;
         int actual = chan.getCurrentChannel();
 
         Assertions.assertEquals(expected, actual);
@@ -200,6 +258,7 @@ class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void sholdNotAmbitVolumeLowMin() {
         Radio vol = new Radio();
