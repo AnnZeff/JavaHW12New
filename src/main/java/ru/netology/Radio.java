@@ -16,7 +16,7 @@ public class Radio {
     }
 
     public Radio(int channelCount) {
-        this.maxChannel = channelCount;
+        this.maxChannel = channelCount - 1;
 
     }
 

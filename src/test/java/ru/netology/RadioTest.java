@@ -45,7 +45,7 @@ class RadioTest {
 
     }
     @Test
-    public void testCurrentChanneParams() {
+    public void testCurrentChannelParams() {
         Radio chan = new Radio(25);
         chan.setCurrentChannel(3);
 
@@ -93,7 +93,7 @@ class RadioTest {
     @Test
     public void sholdNotCurrentChannelAboveMaxParams() {
         Radio chan = new Radio (25);
-        chan.setCurrentChannel(30);
+        chan.setCurrentChannel(25);
 
         int expected = 0;
         int actual = chan.getCurrentChannel();
@@ -292,11 +292,11 @@ class RadioTest {
     @Test
     public void testFromPenultChannelToMaxParams() {
         Radio chan = new Radio(25);
-        chan.setCurrentChannel(24);
+        chan.setCurrentChannel(23);
 
         chan.nextChannel();
 
-        int expected = 25;
+        int expected = 24;
         int actual = chan.getCurrentChannel();
 
         Assertions.assertEquals(expected, actual);
@@ -306,7 +306,7 @@ class RadioTest {
     @Test
     public void shouldNotNextChannelAboveMaxParams() {
         Radio chan = new Radio(25);
-        chan.setCurrentChannel(25);
+        chan.setCurrentChannel(24);
         chan.nextChannel();
 
         int expected = 0;
@@ -330,11 +330,11 @@ class RadioTest {
     @Test
     public void testFromMaxChannelToPrevParams() {
         Radio chan = new Radio(25);
-        chan.setCurrentChannel(25);
+        chan.setCurrentChannel(24);
 
         chan.prevChannel();
 
-        int expected = 24;
+        int expected = 23;
         int actual = chan.getCurrentChannel();
 
         Assertions.assertEquals(expected, actual);
@@ -359,7 +359,7 @@ class RadioTest {
         chan.setCurrentChannel(-1);
         chan.prevChannel();
 
-        int expected = 25;
+        int expected = 24;
         int actual = chan.getCurrentChannel();
 
         Assertions.assertEquals(expected, actual);
